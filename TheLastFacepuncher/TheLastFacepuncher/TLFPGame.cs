@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using TheLastFacepuncher.FacepunchApi;
 
 namespace TheLastFacepuncher
 {
@@ -18,10 +19,11 @@ namespace TheLastFacepuncher
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        public static FpAPI fpAPI = new FpAPI("TLFacepuncher", "a73f6ed15af9f91d4a05855a4a38b5ba");
 
         public TLFPGame()
         {
-            graphics = new GraphicsDeviceManager( this );
+            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
             Window.Title = "The Last Facepuncher";
@@ -36,7 +38,12 @@ namespace TheLastFacepuncher
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            //fpAPI.Login();
+            List<FPThread> threads = fpAPI.GetThreads(240);
+            foreach (FPThread thread in threads)
+            {
+                Console.WriteLine("http://www.facepunch.com/avatar/" + thread.AuthorID + ".png");
+            }
             base.Initialize();
         }
 
@@ -47,7 +54,7 @@ namespace TheLastFacepuncher
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch( GraphicsDevice );
+            spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
         }
@@ -66,28 +73,28 @@ namespace TheLastFacepuncher
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Update( GameTime gameTime )
+        protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
-            if ( GamePad.GetState( PlayerIndex.One ).Buttons.Back == ButtonState.Pressed )
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
             // TODO: Add your update logic here
 
-            base.Update( gameTime );
+            base.Update(gameTime);
         }
 
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Draw( GameTime gameTime )
+        protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear( Color.BurlyWood );
+            GraphicsDevice.Clear(Color.BurlyWood);
 
             // TODO: Add your drawing code here
 
-            base.Draw( gameTime );
+            base.Draw(gameTime);
         }
     }
 }
