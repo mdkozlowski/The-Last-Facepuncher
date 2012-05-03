@@ -14,5 +14,9 @@ namespace TheLastFacepuncher.Tiles
         {
             Position = vec;
         }
+
+        public override void Draw(SpriteBatch sb)
+        {
+        }
     }
 }

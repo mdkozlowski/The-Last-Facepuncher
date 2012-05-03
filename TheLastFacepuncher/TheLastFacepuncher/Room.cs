@@ -20,7 +20,7 @@ namespace TheLastFacepuncher
         {
             Tile[,] Tiles = new Tile[40, 24];
             for (int x = 0; x < 40; x++)
-                for (int y = 0; y < 20; y++)
+                for (int y = 0; y < 24; y++)
                 {
                     //Assign blank tiles for initialisation
                     Tiles[x, y] = new BlankTile(new Vector2(x, y));
@@ -28,12 +28,30 @@ namespace TheLastFacepuncher
 
             for (int x = 0; x < 40; x++)
             {
-                for (int y = 0; y < 20; y++)
+                for (int y = 0; y < 24; y++)
                 {
-                    //Loop through each pixel and assign tiles
+                    if (colorData[x, y] == Color.Black)
+                    {
+                        Tiles[x, y] = new Wall(new Vector2(x, y));
+                    }
                 }
             }
             return Tiles;
+        }
+
+        public void Update(GameTime gT)
+        {
+        }
+
+        public void Draw(SpriteBatch sb)
+        {
+            for (int x = 0; x < 40; x++)
+            {
+                for (int y = 0; y < 24; y++)
+                {
+                    Tiles[x, y].Draw(sb);
+                }
+            }
         }
     }
 }
