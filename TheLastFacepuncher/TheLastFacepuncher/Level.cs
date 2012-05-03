@@ -12,5 +12,10 @@ namespace TheLastFacepuncher
         public Level()
         {
         }
+
+        public Level(List<Room> Rooms)
+        {
+            this.Rooms = Rooms;
+        }
     }
 }

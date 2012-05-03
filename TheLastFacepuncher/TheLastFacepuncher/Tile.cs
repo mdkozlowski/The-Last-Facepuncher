@@ -5,10 +5,7 @@ using System.Text;
 
 namespace TheLastFacepuncher
 {
-    public class Tile
+    public abstract class Tile
     {
-        public Tile()
-        {
-        }
     }
 }
